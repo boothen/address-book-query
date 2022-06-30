@@ -29,4 +29,10 @@ public class AddressBookQueryTest {
                         .get()
                         .isEqualTo("Wes Jackson");
     }
+
+    @Test
+    void personDaysOlderTest() {
+        long daysOlder = addressBookQuery.daysOlder("Bill", "Paul");
+        assertThat(daysOlder).isEqualTo(2862L);
+    }
 }
