@@ -1,6 +1,8 @@
 package com.gumtree.address.book.query;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AddressBookQuery {
@@ -16,4 +18,13 @@ public class AddressBookQuery {
                                  .collect(Collectors.groupingBy(AddressBookEntry::gender, Collectors.counting()))
                                  .get(gender);
     }
+
+    public Optional<String> oldestPerson() {
+        return addressBookEntries.stream()
+                                 .sorted(Comparator.comparing(AddressBookEntry::dateOfBirth))
+                                 .map(AddressBookEntry::name)
+                                 .findFirst();
+    }
+
+    
 }
